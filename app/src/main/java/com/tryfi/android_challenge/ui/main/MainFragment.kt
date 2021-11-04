@@ -1,5 +1,6 @@
 package com.tryfi.android_challenge.ui.main
 
+import android.animation.ObjectAnimator
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,9 +36,15 @@ class MainFragment : Fragment() {
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         val animView = view.findViewById<ImageView>(R.id.animView)
 
-        // play animView animation
+        // play animation
         val animationDrawable = animView.drawable as AnimationDrawable
-        animationDrawable.start()
+        val animator = ObjectAnimator.ofInt(animationDrawable.numberOfFrames)
+        animator.duration = 1000L
+        animator.repeatCount = ObjectAnimator.INFINITE
+        animator.addUpdateListener {
+            animationDrawable.selectDrawable(it.animatedValue as Int)
+        }
+        animator.start()
 
         // set progress on seekBar (takes Int)
         seekBar.progress = 10
