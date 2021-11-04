@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:variablePadding="true"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/running_dog1"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog2"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog3"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog4"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog5"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog6"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog7"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog8"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog9"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog10"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog11"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog12"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog13"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog14"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog15"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog16"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog17"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog18"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog19"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog20"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog21"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog22"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog23"
+        android:duration="40" />
+    <item
+        android:drawable="@drawable/running_dog24"
+        android:duration="40" />
+</animation-list>

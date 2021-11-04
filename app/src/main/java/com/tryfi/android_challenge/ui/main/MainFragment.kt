@@ -1,14 +1,13 @@
 package com.tryfi.android_challenge.ui.main
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.SeekBar
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.airbnb.lottie.LottieAnimationView
 import com.tryfi.android_challenge.R
 
 class MainFragment : Fragment() {
@@ -31,17 +30,24 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         // views
-        val playButton = view.findViewById<ImageButton>(R.id.playButton)
+        val playPauseButton = view.findViewById<ImageButton>(R.id.playPauseButton)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
-        val animView = view.findViewById<LottieAnimationView>(R.id.animView)
+        val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val animView = view.findViewById<ImageView>(R.id.animView)
 
         // play animView animation
-        animView.playAnimation()
+        val animationDrawable = animView.drawable as AnimationDrawable
+        animationDrawable.start()
 
         // set progress on seekBar (takes Int)
-//        seekBar.progress = 10
+        seekBar.progress = 10
 
-        // set progress on animView (takes Float from 0f to 1f)
-//        animView.progress = 0.1f
+        // set speeds on spinner
+        spinner.adapter = ArrayAdapter.createFromResource(
+            view.context,
+            R.array.speeds,
+            android.R.layout.simple_spinner_item
+        )
+        spinner.setSelection(1)
     }
 }

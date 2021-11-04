@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -8,28 +7,41 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/playButton"
+            android:id="@+id/playPauseButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_play_arrow" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_pause" />
 
         <SeekBar
             android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/spinner"
+            android:layout_toEndOf="@+id/playPauseButton" />
 
-    <com.airbnb.lottie.LottieAnimationView
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <ImageView
         android:id="@+id/animView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/anim_running_dog" />
+        android:padding="32dp"
+        android:src="@drawable/anim_running_dog" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

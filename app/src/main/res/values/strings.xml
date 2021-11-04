@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Fi Android Challenge</string>
+    <string-array name="speeds">
+        <item>0.5x</item>
+        <item>1x</item>
+        <item>2x</item>
+        <item>4x</item>
+    </string-array>
 </resources>
