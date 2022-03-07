@@ -10,12 +10,18 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.tryfi.android_challenge.R
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), CoroutineScope {
 
     companion object {
         fun newInstance() = MainFragment()
     }
+
+    private lateinit var job: Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     private lateinit var viewModel: MainViewModel
 
@@ -23,6 +29,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        job = Job()
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -36,25 +43,48 @@ class MainFragment : Fragment() {
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         val animView = view.findViewById<ImageView>(R.id.animView)
 
-        // play animation
         val animationDrawable = animView.drawable as AnimationDrawable
+
+        // TODO: play animation (using AnimationDrawable)
+//         animationDrawable.start()
+
+        // TODO: play animation (using ValueAnimator)
         val animator = ObjectAnimator.ofInt(animationDrawable.numberOfFrames)
-        animator.duration = 1000L
+        animator.duration = 960L
         animator.repeatCount = ObjectAnimator.INFINITE
         animator.addUpdateListener {
             animationDrawable.selectDrawable(it.animatedValue as Int)
         }
-        animator.start()
+//        animator.start()
+
+        // TODO: play animation (using a coroutine)
+        launch(Dispatchers.Main) {
+            var lastFrameIndex = -1
+            while (false) { // flip to true to start
+                val nextFrameIndex = (lastFrameIndex + 1)
+                    .takeIf { it < animationDrawable.numberOfFrames } ?: 0
+                animView.setImageDrawable(animationDrawable.getFrame(nextFrameIndex))
+                lastFrameIndex = nextFrameIndex
+                delay(40L)
+            }
+        }
 
         // set progress on seekBar (takes Int)
         seekBar.progress = 10
+        // set max on seekBar (takes Int)
+        seekBar.max = 100
 
-        // set speeds on spinner
+        // set speed values on spinner
         spinner.adapter = ArrayAdapter.createFromResource(
             view.context,
             R.array.speeds,
             android.R.layout.simple_spinner_item
         )
         spinner.setSelection(1)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        job.cancel()
     }
 }
