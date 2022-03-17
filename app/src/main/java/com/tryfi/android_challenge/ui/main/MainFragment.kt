@@ -1,6 +1,5 @@
 package com.tryfi.android_challenge.ui.main
 
-import android.animation.ObjectAnimator
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,25 +44,13 @@ class MainFragment : Fragment(), CoroutineScope {
 
         val animationDrawable = animView.drawable as AnimationDrawable
 
-        // TODO: play animation (using AnimationDrawable)
-//         animationDrawable.start()
-
-        // TODO: play animation (using ValueAnimator)
-        val animator = ObjectAnimator.ofInt(animationDrawable.numberOfFrames)
-        animator.duration = 960L
-        animator.repeatCount = ObjectAnimator.INFINITE
-        animator.addUpdateListener {
-            animationDrawable.selectDrawable(it.animatedValue as Int)
-        }
-//        animator.start()
-
-        // TODO: play animation (using a coroutine)
+        // play the animation
         launch(Dispatchers.Main) {
             var lastFrameIndex = -1
             while (false) { // flip to true to start
                 val nextFrameIndex = (lastFrameIndex + 1)
                     .takeIf { it < animationDrawable.numberOfFrames } ?: 0
-                animView.setImageDrawable(animationDrawable.getFrame(nextFrameIndex))
+                animationDrawable.selectDrawable(nextFrameIndex)
                 lastFrameIndex = nextFrameIndex
                 delay(40L)
             }
